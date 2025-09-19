@@ -55,8 +55,6 @@
     // Advanced Options
   "include": [
     "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
   ]
+ 
  }
