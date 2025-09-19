@@ -1,0 +1,32 @@
+import express, { Express, Request, Response } from 'express';
+
+// Define the port, using an environment variable or a default value
+const port = process.env.PORT || 3000;
+
+// Create an instance of the Express application
+const app: Express = express();
+
+// --- Middleware Configuration ---
+// The `express.json()` middleware parses incoming JSON data
+app.use(express.json());
+
+// --- Define your API Routes ---
+// A simple GET route to test if the server is running
+app.get('/', (req: Request, res: Response) => {
+  res.send('Welcome to the Class Demos API!');
+});
+
+// A more specific route to serve data for your frontend demos
+app.get('/api/demos', (req: Request, res: Response) => {
+  const demos = [
+    { id: 1, name: 'Component Interaction', description: 'Demonstrates parent-child component communication.' },
+    { id: 2, name: 'Form Handling', description: 'Shows how to handle forms and validation.' },
+    { id: 3, name: 'API Fetch', description: 'Example of fetching data from the backend.' },
+  ];
+  res.status(200).json(demos);
+});
+
+// --- Start the Server ---
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
