@@ -1,15 +1,25 @@
+// backend/src/index.ts
 import express from 'express';
 import type { Express, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
+import connectDB from './config/db.config.js'; // Corrected path
+import Demo from './models/demo.model.js' // Added .js extension
 
 const port = process.env.PORT || 3000;
 const app: Express = express();
 app.use(express.json());
 
-// Swagger options
+// Connect to the database and then start the server
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`Server is running at http://localhost:${port}`);
+    });
+});
+
+// Swagger setup (your existing code)
 const swaggerOptions = {
-    swaggerDefinition: {
+    definition: { // <-- New syntax for OpenAPI 3.0.0
         openapi: '3.0.0',
         info: {
             title: 'Class Demos API',
@@ -20,23 +30,18 @@ const swaggerOptions = {
             { url: `http://localhost:${port}` },
         ],
     },
-    apis: ['./src/index.ts'], // Path to the API docs
+    apis: ['./src/index.ts'],
 };
-
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// A basic GET route to test if the server is running
-app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the Class Demos API!');
-});
-
-// A more specific route to serve data for your frontend demos
+// --- Define your API Routes ---
+// GET route to fetch demos from the database
 /**
  * @swagger
  * /api/demos:
  *   get:
- *     summary: Returns a list of class demos.
+ *     summary: Returns a list of class demos from the database.
  *     responses:
  *       200:
  *         description: A list of demos.
@@ -47,16 +52,44 @@ app.get('/', (req: Request, res: Response) => {
  *               items:
  *                 type: object
  */
-app.get('/api/demos', (req: Request, res: Response) => {
-  const demos = [
-    { id: 1, name: 'Component Interaction' },
-    { id: 2, name: 'Form Handling' },
-    { id: 3, name: 'API Fetch' },
-  ];
-  res.status(200).json(demos);
+app.get('/api/demos', async (req: Request, res: Response) => {
+  try {
+    const demos = await Demo.find(); // Fetch data from MongoDB
+    res.status(200).json(demos);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching demos' });
+  }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-  console.log(`Swagger UI available at http://localhost:${port}/api-docs`);
+// POST route to add a new demo
+/**
+ * @swagger
+ * /api/demos:
+ *   post:
+ *     summary: Creates a new demo entry.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Demo created successfully.
+ *       500:
+ *         description: Error creating demo.
+ */
+app.post('/api/demos', async (req: Request, res: Response) => {
+  try {
+    const newDemo = new Demo(req.body);
+    await newDemo.save();
+    res.status(201).json(newDemo);
+  } catch (err) {
+    res.status(500).json({ message: 'Error creating demo' });
+  }
 });
