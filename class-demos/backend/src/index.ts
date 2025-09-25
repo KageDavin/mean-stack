@@ -3,23 +3,22 @@ import express from 'express';
 import type { Express, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import connectDB from './config/db.config.js'; // Corrected path
-import Demo from './models/demo.model.js' // Added .js extension
-
+import { connectDB  } from '@config/db.config.ts';)
+import Demo from './models/demo.model';
 const port = process.env.PORT || 3000;
 const app: Express = express();
 app.use(express.json());
 
 // Connect to the database and then start the server
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`Server is running at http://localhost:${port}`);
-    });
-});
+// connectDB().then(() => {
+//     app.listen(port, () => {
+//         console.log(`Server is running at http://localhost:${port}`);
+//     });
+// });
 
 // Swagger setup (your existing code)
 const swaggerOptions = {
-    definition: { // <-- New syntax for OpenAPI 3.0.0
+    definition: { 
         openapi: '3.0.0',
         info: {
             title: 'Class Demos API',
@@ -27,7 +26,7 @@ const swaggerOptions = {
             description: 'Backend API for class demos',
         },
         servers: [
-            { url: `http://localhost:${port}` },
+            { url: `http://127.0.0.1:${port}` },
         ],
     },
     apis: ['./src/index.ts'],

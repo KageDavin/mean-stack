@@ -55,6 +55,12 @@
     // Advanced Options
   "include": [
     "src/**/*"
-  ]
- 
+  ],
+  // tsconfig.json
+
+ "baseUrl": ".",
+    "paths": {
+      "@config/*": ["src/config/*"],
+      "@models/*": ["src/models/*"]
+    }
  }
