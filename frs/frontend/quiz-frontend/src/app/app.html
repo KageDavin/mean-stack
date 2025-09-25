@@ -1,0 +1,23 @@
+<header>
+  <nav>
+    <a routerLink="/">Home</a>
+    @if (auth.isLoggedIn()) {
+      <a routerLink="/quizzes">Quizzes</a>
+      @if (auth.userSig()?.role === 'admin') {
+        <a routerLink="/admin">Admin</a>
+      }
+    }
+  </nav>
+  <div class="spacer"></div>
+  <div>
+    @if (!auth.isLoggedIn()) {
+      <a routerLink="/login">Login</a> | <a routerLink="/register">Register</a>
+    } @else {
+      <span>Hi, {{ auth.userSig()?.username }} ({{ auth.userSig()?.role }})</span>
+      <button (click)="logout()">Logout</button>
+    }
+  </div>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>

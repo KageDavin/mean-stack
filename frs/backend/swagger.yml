@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: Quiz API
+  version: 1.0.0
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      responses: { '200': { description: OK } }
+  /api/auth/register:
+    post:
+      summary: Register
+      responses: { '201': { description: Created } }
+  /api/auth/login:
+    post:
+      summary: Login
+      responses: { '200': { description: OK } }
+  /api/quizzes:
+    get:
+      summary: List quizzes
+      responses: { '200': { description: OK } }
+    post:
+      summary: Create quiz (admin)
+      responses: { '201': { description: Created } }
+  /api/quizzes/{id}:
+    get:
+      summary: Get quiz
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+    put:
+      summary: Update quiz (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+    delete:
+      summary: Delete quiz (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /api/quizzes/{id}/submit:
+    post:
+      summary: Submit quiz (student)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /api/results:
+    get:
+      summary: Results (admin)
+      responses: { '200': { description: OK } }
+  /api/my/results:
+    get:
+      summary: My results (student)
+      responses: { '200': { description: OK } }
