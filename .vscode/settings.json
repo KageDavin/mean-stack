@@ -1,0 +1,15 @@
+{
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "files.trimTrailingWhitespace": true,
+    // "files.autoSave": "afterDelay",
+    // "files.autoSaveDelay": 1000,
+    "files.exclude": {
+    "**/.git": true,
+    "**/.idea": true,
+    "**/node_modules": true,
+    "**/dist": true
+}
+}

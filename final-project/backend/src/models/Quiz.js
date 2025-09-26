@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const questionSchema = new mongoose.Schema({
   questionText: { type: String, required: true },
-  options: { type: [String], validate: v => v.length === 4 },
-  correctOption: { type: Number, min: 0, max: 3, required: true }
+  options: { type: [String], required: true, validate: v => v.length === 4 },
+  correctOption: { type: Number, required: true, min: 0, max: 3 }
 });
 
 const quizSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: String,
+  description: { type: String },
   duration: { type: Number, default: 15 }, // minutes
   questions: [questionSchema],
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -16,7 +16,7 @@ const quizSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Quiz', quizSchema);
+export default mongoose.model('Quiz', quizSchema);
 
 
 
