@@ -3,8 +3,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
-import apiRouter from './routes/api/index.js';
-import errorHandler from './middleware/error.middleware.js';
+import apiRouter from './routes/api/v1/index.js';
+import errorHandler from './middleware/error-handler.js'
 
 const app = express();
 

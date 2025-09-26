@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal, computed, DestroyRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuizService } from '../shared/quiz.service';
-import { ResponseService } from '../../shared/response.Service';
+import { QuizService } from '../../shared/quiz.service';
+import { ResponseService } from '../../shared/response.service';
 import type { QuizPublic } from '../../models/quiz';
 
 @Component({

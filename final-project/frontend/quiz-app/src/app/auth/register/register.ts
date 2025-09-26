@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from './auth.Service';
+import { AuthService } from '../auth.service';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -43,5 +43,5 @@ export class Register {
 }
 // import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 // import { Router, RouterLink } from '@angular/router';
-// import { AuthService } from '../auth.Service';
+// import { AuthService } from '../auth.service';
 // import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';

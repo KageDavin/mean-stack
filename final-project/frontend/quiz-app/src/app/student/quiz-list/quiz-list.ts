@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { RouterLink } from '@angular/router';
 import { QuizService } from '../../shared/quiz.service';
 import type { QuizPublic } from '../../models/quiz';
-import { AsyncPipe, DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'quiz-list',
   templateUrl: './quiz-list.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, AsyncPipe, DatePipe],
+  imports: [RouterLink ],
   host: { class: 'page' }
 })
 export class QuizList {
@@ -19,6 +19,7 @@ export class QuizList {
   count = computed(() => this.quizzes().length);
 
   constructor() {
+    this.loading = signal(true);
     this.qs.list().subscribe({
       next: (data) => { this.quizzes.set(data); this.loading.set(false); },
       error: () => { this.quizzes.set([]); this.loading.set(false); }

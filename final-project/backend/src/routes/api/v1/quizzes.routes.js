@@ -6,9 +6,9 @@ import {
   updateQuiz,
   deleteQuiz,
   getQuizResults
-} from '../../controllers/quizzes.controller.js';
-import { authMiddleware } from '../../middleware/auth.middleware.js';
-import { requireRole } from '../../middleware/role.middleware.js';
+} from '../../../controllers/quizzes.control.js';
+import { authMiddleware } from '../../../middleware/auth.js';
+import { requireRole } from '../../../middleware/role.js';
 
 const router = express.Router();
 
