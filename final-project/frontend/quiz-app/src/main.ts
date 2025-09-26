@@ -9,12 +9,14 @@ import { provideZonelessChangeDetectionn } from '@angular/core/rxjs-interop';
 import { provideZonelessChangeDetection } from '@angular/core/zoneless-change-detection';
 import { importProvidersFrom } from '@angular/core';
 import { rxjs } from '@angular/core/rxjs-interop';
+import { rxjs } from 'rxjs';
 
 bootstrapApplication(App, appConfig) .then(() => {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideZonelessChangeDetection()
+
   ]
 }).catch(console.error);
 

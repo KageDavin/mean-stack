@@ -1,0 +1,39 @@
+@section class="quiz">
+  @if (!quiz()) {
+    <p>Loading…</p>
+  } @else {
+    <header class="header">
+      <h1>{{ quiz()!.title }}</h1>
+      <div class="meta">
+        <span>Time left: {{ secondsLeft() }}s</span>
+        <span>Progress: {{ progress() }}%</span>
+      </div>
+    </header>
+
+    <ol class="questions">
+      @for (q of quiz()!.questions; track $index; let i = $index) {
+        <li>
+          <p class="q">{{ i + 1 }}. {{ q.questionText }}</p>
+          <ul class="options">
+            @for (opt of q.options; track $index; let oi = $index) {
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    [name]="'q' + i"
+                    [checked]="answers()[i] === oi"
+                    (change)="select(i, oi)"
+                    [disabled]="busy()"
+                  >
+                  <span>{{ opt }}</span>
+                </label>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+
+    <button class="btn primary" (click)="submit()" [disabled]="busy()">Submit</button>
+  }
+

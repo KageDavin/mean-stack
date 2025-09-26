@@ -13,12 +13,11 @@
     "module": "ES2022",
     "lib": [
       "ES2022",
-      "DOM"
+      "DOM",
     ]
-  }
-
+  },
   "angularCompilerOptions": {
-    "enableIvy": true,
+    //"enableIvy": true,
     "strictTemplateChecks": true,
     "strictTemplates": true
   }

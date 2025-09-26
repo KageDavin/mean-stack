@@ -1,11 +1,17 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, RouterLink, NgOptimizedImage],
+  host: {
+    class: 'layout',
+    role: 'application'
+  }
 })
 export class App {
   protected readonly title = signal('quiz-app');

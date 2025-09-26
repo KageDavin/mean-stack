@@ -1,0 +1,24 @@
+<section class="card" [class]="busy() ? 'disabled' : ''" aria-busy="{{busy()}}">
+  <h1>Register</h1>
+
+  @if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  }
+
+  <form (ngSubmit)="submit()" [formGroup]="form" novalidate>
+    <label>
+      <span>Username</span>
+      <input type="text" formControlName="username" [attr.aria-invalid]="form.controls.username.invalid"/>
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="password" formControlName="password" [attr.aria-invalid]="form.controls.password.invalid"/>
+    </label>
+
+    <button type="submit" [disabled]="busy() || form.invalid">Create account</button>
+  </form>
+
+  <p class="muted">Have an account? <a routerLink="/login">Login</a></p>
+</section>
+
