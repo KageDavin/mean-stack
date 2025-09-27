@@ -5,6 +5,6 @@ import { authMiddleware } from '../../../middleware/auth.js';
 const router = express.Router();
 
 router.post('/quizzes/:id/attempt', authMiddleware, attemptQuiz);
-router.get('/', authMiddleware, getResponses); // admin or student (filter by studentId)
+router.get('/', authMiddleware, getResponses);
 
 export default router;

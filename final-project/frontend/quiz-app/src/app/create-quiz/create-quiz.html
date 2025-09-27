@@ -1,1 +1,137 @@
-<p>create-quiz works!</p>
+<section class="card">
+  <h1>Create Quiz</h1>
+
+  @if (error()) {
+    <div class="alert error" role="alert">{{ error() }}</div>
+  }
+
+  <form (ngSubmit)="submitQuiz()" novalidate>
+    <label class="field">
+      <span>Title</span>
+      <input
+        type="text"
+        [value]="quizForm.controls.title.value"
+        (input)="quizForm.controls.title.setValue($any($event.target).value)"
+      />
+      @if (quizForm.controls.title.touched && quizForm.controls.title.invalid) {
+        <small class="error">Title is required (min 3).</small>
+      }
+    </label>
+
+    <label class="field">
+      <span>Description</span>
+      <textarea
+        (input)="quizForm.controls.description.setValue($any($event.target).value)"
+      >{{ quizForm.controls.description.value }}</textarea>
+    </label>
+
+    <label class="field-inline">
+      <span>Duration (minutes)</span>
+      <input
+        type="number"
+        min="1"
+        [value]="quizForm.controls.duration.value"
+        (input)="quizForm.controls.duration.setValue(Number($any($event.target).value))"
+      />
+    </label>
+
+    <section class="questions">
+      <h2>Questions</h2>
+      <button type="button" class="btn small" (click)="addQuestion()">+ Add question</button>
+
+      @if (questions.length === 0) {
+        <p class="muted">No questions yet — add one to start.</p>
+      } @else {
+        <!-- Correct @for usage: iterate over the FormArray controls -->
+        @for (question of questions.controls; let i = $index; track question) {
+          <div class="question card-sm">
+            <div class="q-header">
+              <h3>Question {{ i + 1 }}</h3>
+              <button type="button" class="btn danger small" (click)="removeQuestion(i)">Remove</button>
+            </div>
+
+            <label class="field">
+              <span>Question text</span>
+              <input
+                type="text"
+                [value]="question.controls.questionText.value"
+                (input)="question.controls.questionText.setValue($any($event.target).value)"
+              />
+              @if (question.controls.questionText.touched && question.controls.questionText.invalid) {
+                <small class="error">Enter a short question (min 3 chars).</small>
+              }
+            </label>
+
+            <div class="options">
+              <h4>Options</h4>
+
+              <!-- Nested @for over the options FormArray's controls -->
+              @for (option of question.controls.options.controls; let oi = $index; track option) {
+                <label class="field-inline">
+                  <span>Option {{ oi + 1 }}</span>
+                  <input
+                    type="text"
+                    [value]="option.value"
+                    (input)="option.setValue($any($event.target).value)"
+                  />
+                </label>
+              }
+            </div>
+
+            <label class="field-inline">
+              <span>Correct option (1-4)</span>
+              <input
+                type="number"
+                min="1"
+                max="4"
+                [value]="question.controls.correctOption.value + 1"
+                (input)="question.controls.correctOption.setValue(Number($any($event.target).value) - 1)"
+              />
+            </label>
+          </div>
+        }
+      }
+    </section>
+
+    <div class="form-actions">
+      <button type="submit" class="btn primary" [disabled]="busy()">
+        @if (busy()) { <span class="spinner"></span> }
+        Save Quiz
+      </button>
+    </div>
+  </form>
+</section>
+
+
+
+
+
+<!--  <h1>Create Quiz</h1>
+
+  @if (error()) {
+    <div class="alert error" role="alert">{{ error() }}</div>
+  }
+
+  <form (ngSubmit)="submitQuiz()" novalidate>
+    <label class="field">
+      <span>Title</span>
+      <input type="text" [value]="quizForm.controls.title.value" (input)="quizForm.controls.title.setValue($any($event.target).value)" />
+      @if (quizForm.controls.title.touched && quizForm.controls.title.invalid) {
+        <small class="error">Title is required (min 3).</small>
+      }
+    </label>
+
+    <label class="field">
+      <span>Description</span>
+      <textarea (input)="quizForm.controls.description.setValue($any($event.target).value)">{{ quizForm.controls.description.value }}</textarea>
+    </label>
+
+    <button type="submit" [disabled]="quizForm.invalid || submitting()">
+      @if (submitting()) {
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="visually-hidden">Loading...</span>
+      } else {
+        Create Quiz
+      }
+  </form>> -->
+

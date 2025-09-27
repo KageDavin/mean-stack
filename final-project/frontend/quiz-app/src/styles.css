@@ -33,22 +33,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
-/* App.html */
-  .bar { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb; }
-    .brand { font-weight:600; text-decoration:none; color:inherit; }
-    .nav { display:flex; gap:1rem; }
-    .link { text-decoration:none; color:#2563eb; }
-    .container { padding: 1rem; max-width: 960px; margin: 0 auto; }
-    .footer { display:flex; gap:0.5rem; align-items:center; padding:1rem; border-top:1px solid #e5e7eb; color:#6b7280; }
-
-    /* Login Page */
-.auth-page { display:grid; place-items:center; min-height:60vh; }
-.card { width:100%; max-width:360px; border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
-.card.disabled { opacity:0.6; pointer-events:none; }
-label { display:grid; gap:6px; margin-bottom:12px; }
-input { padding:8px; border:1px solid #cbd5e1; border-radius:8px; }
-button { padding:8px 12px; border-radius:8px; border:1px solid #2563eb; background:#2563eb; color:white; }
-.error { color:#b91c1c; }
-.muted { color:#6b7280; }
-
-/* Quiz Page */
+button {
+  font-family: inherit;
+}
+/* End of Reset */
