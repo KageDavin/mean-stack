@@ -1,0 +1,9 @@
+<!-- src/app/quiz/quiz-preview.html -->
+<h2>Preview Quiz</h2>
+<p>{{ quiz?.title }}</p>
+<p>{{ quiz?.description }}</p>
+<ul>
+  @for (q of quiz?.questions; track q._internalId; let i = $index) {
+    <li>Q{{ i + 1 }}: {{ q.questionText }}</li>
+  }
+</ul>

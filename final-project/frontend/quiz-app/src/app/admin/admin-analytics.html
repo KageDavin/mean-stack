@@ -1,0 +1,19 @@
+<!-- src/app/admin/admin-analytics.html -->
+<h2>📊 Quiz Analytics</h2>
+
+@if (loading()) {
+  <p>Loading analytics…</p>
+} @else if (stats().length > 0) {
+  <table>
+    <tr><th>Quiz</th><th>Attempts</th><th>Avg Score</th></tr>
+    @for (s of stats(); track s.quizId) {
+      <tr>
+        <td>{{ s.quizId }}</td>
+        <td>{{ s.attempts }}</td>
+        <td>{{ s.avgScore }}</td>
+      </tr>
+    }
+  </table>
+} @else {
+  <p>No analytics available.</p>
+}

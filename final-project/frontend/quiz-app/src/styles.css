@@ -37,3 +37,181 @@ button {
   font-family: inherit;
 }
 /* End of Reset */
+
+/* Global Styles */
+.create-quiz-page .card {
+  padding: 16px;
+  max-width: 900px;
+  margin: 1rem auto;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.field {
+  display: block;
+  margin-bottom: 12px;
+}
+.field-inline {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.field-inline input[type="number"] {
+  width: 120px;
+}
+.card-sm {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #fafafa;
+}
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.btn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+.btn.primary {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+.btn.danger {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+.btn.small {
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+.alert.error {
+  background: #fee2e2;
+  padding: 8px;
+  border-radius: 6px;
+  color: #b91c1c;
+  margin-bottom: 10px;
+}
+.muted {
+  color: #6b7280;
+}
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* #### Floating Create Button ### */
+.floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+  background-color: #0056b3;
+
+}
+
+/*  Flocating Button 2 */
+.floating-create2 {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.filters2 {
+  margin-bottom: 1rem;
+}
+
+.filters2 button {
+  margin-right: 0.5rem;
+}
+
+  /* ### quiz-results.html ### */
+  .correct {
+  font-weight: bold;
+  color: green;
+}
+
+.selected {
+  text-decoration: underline;
+}
+
+/* Floating Button 3 */
+.filters3 button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.quiz-list {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.actions button {
+  margin-right: 0.5rem;
+}
+
+.floating-create3 {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}

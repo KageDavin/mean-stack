@@ -5,11 +5,23 @@
         <a routerLink="/quizzes" class="link">Quizzes</a>
         <a routerLink="/login" class="link">Login</a>
         <a routerLink="/register" class="link">Register</a>
+         <a routerLink="/admin/dashboard" class="link">Dashboard</a>
+         <a routerLink="/create-quiz" class="btn primary">Create quiz</a>
       </nav>
     </header>
+    <main class="main">
 
-    <main class="container">
+    <div class="container d-flex flex-column justify-content-center align-items-center mt-5 mb-5 p-3 bg-light border rounded shadow-sm mx-auto" style="max-width: 800px;">
+    <h1 class="mb-4">Welcome to Quiz Generator)</h1>
+    <p class="mb-4 text-center">Create and take quizzes on various topics. Test your knowledge or Test Someone Else and have fun!</p>
+    <img ngSrc="/assets/quiz-illustration.svg" width="200" height="200" alt="Quiz Illustration" class="mb-4">
+    <h2 class="mb-4">Get Started</h2>
+    <p class="mb-4 text-center">To get started, you have to decide if your a QC or a QT. A QC is a Quiz Creator, they create quizzes for others to take. A QT is a Quiz Taker, they take quizzes created by QCs. If you want to create quizzes, you have to register as a QC. If you want to take quizzes, you have to register as a QT.</p>
+    <div class="d-flex gap-3">
       <router-outlet/>
+      </div>
+ </div>
+
     </main>
 
     <footer class="footer">

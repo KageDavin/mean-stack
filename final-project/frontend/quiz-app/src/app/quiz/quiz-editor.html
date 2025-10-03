@@ -1,0 +1,146 @@
+<!-- ─────────────────────────────────────────────
+     File: quiz-editor.html
+     Purpose: Signal-based quiz editor for admin creation/editing
+     ───────────────────────────────────────────── -->
+<!-- File: src/app/quiz/quiz-editor.html v2,25 -->
+
+<h2>Edit Quiz</h2>
+
+<form (submit)="save()" novalidate>
+  <!-- Title, description, duration, published... -->
+
+  <h3>Questions</h3>
+
+@for (q of questions(); track q._internalId; let i = $index) {
+    <fieldset>
+      <legend>Question {{ i + 1 }}</legend>
+
+      <label>
+        Text:
+        <input type="text" [value]="q.questionText" (input)="updateQuestionText(i, $any($event.target).value)" />
+      </label>
+
+      @for (opt of q.options; track $index; let j = $index) {
+        <label>
+          Option {{ j + 1 }}:
+          <input type="text" [value]="opt" (input)="updateOption(i, j, $any($event.target).value)" />
+        </label>
+      }
+
+      <label>
+        Correct Option:
+        <select [value]="q.correctOption" (change)="updateCorrectOption(i, +$any($event.target).value)">
+          @for (let opt of q.options; track $index; let j = $index) {
+            <option [value]="j">Option {{ j + 1 }}</option>
+          }
+        </select>
+      </label>
+
+      <button type="button" (click)="removeQuestion(i)">Remove Question</button>
+    </fieldset>
+  }
+
+  <button type="button" (click)="addQuestion()">Add Question</button>
+  <button type="submit">Save</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
+
+<!--
+
+<h2>@if (store.id()) { Edit Quiz } @else { Create New Quiz }</h2>
+
+<form (submit)="save(); $event.preventDefault()">
+  <section class="form-section">
+    <label>
+      Title:
+      <input
+        type="text"
+        [value]="title()"
+        (input)="title.set($event.target.value)"
+        [class.invalid]="!isValidTitle()"
+      />
+    </label>
+
+    <label>
+      Description:
+      <textarea
+        [value]="description()"
+        (input)="description.set($event.target.value)"
+      ></textarea>
+    </label>
+
+    <label>
+      Duration (minutes):
+      <input
+        type="number"
+        [value]="duration()"
+        (input)="duration.set(Number($event.target.value))"
+        [class.invalid]="!isValidDuration()"
+      />
+    </label>
+
+    <label>
+      Published:
+      <input
+        type="checkbox"
+        [checked]="published()"
+        (change)="published.set($event.target.checked)"
+      />
+    </label>
+  </section>
+
+  <section class="questions-section">
+    <h3>Questions</h3>
+
+    @for (q of questions(); let i = $index) {
+      <fieldset class="question-block">
+        <legend>Question {{ i + 1 }}</legend>
+
+        <label>
+          Question Text:
+          <input
+            type="text"
+            [value]="q.questionText"
+            (input)="updateQuestionText(i, $event.target.value)"
+            [class.invalid]="q.questionText.trim().length === 0"
+          />
+        </label>
+
+        <div class="options">
+          @for (opt of q.options; let j = $index) {
+            <label>
+              Option {{ j + 1 }}:
+              <input
+                type="text"
+                [value]="opt"
+                (input)="updateOption(i, j, $event.target.value)"
+                [class.invalid]="opt.trim().length === 0"
+              />
+            </label>
+          }
+        </div>
+
+        <label>
+          Correct Option:
+          <select
+            [value]="q.correctOption"
+            (change)="updateCorrectOption(i, Number($event.target.value))"
+          >
+            @for (opt of q.options; let j = $index) {
+              <option [value]="j">Option {{ j + 1 }}</option>
+            }
+          </select>
+        </label>
+
+        <button type="button" (click)="removeQuestion(i)">🗑️ Remove Question</button>
+      </fieldset>
+    }
+
+    <button type="button" (click)="addQuestion()">＋ Add Question</button>
+  </section>
+
+  <section class="form-actions">
+    <button type="submit" [disabled]="!isValid()">💾 Save Quiz</button>
+    <button type="button" (click)="cancel()">↩️ Cancel</button>
+  </section>
+</form> -->

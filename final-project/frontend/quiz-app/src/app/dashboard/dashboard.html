@@ -1,1 +1,33 @@
-<p>dashboard works!</p>
+<!-- src/app/dashboard/dashboard.html -->
+<section class="card">
+@if (role === 'admin') {
+  <admin-view />
+} @else {
+  <student-view />
+}
+</section>
+
+<!-- OLD COde - updating to dynamic based on Role -->
+<!--
+<section class="card">
+  <h1>Admin Dashboard</h1>
+
+  @if (isAdmin()) {
+    <p>Welcome, admin <strong>{{ user()?.username }}</strong>.</p>
+
+    <nav class="admin-nav">
+      <a routerLink="/admin/manage" class="btn">Manage Quizzes</a>
+      <a routerLink="/create-quiz" class="btn">Create Quiz</a>
+    </nav>
+
+    <section class="quick-actions">
+      <h2>Quick actions</h2>
+      <ul>
+        <li><a routerLink="/admin/manage">Edit or delete quizzes</a></li>
+        <li><a routerLink="/admin/manage">View quiz results</a></li>
+      </ul>
+    </section>
+  } @else {
+    <p>You do not have admin permissions. If you believe this is an error, contact your admin.</p>
+  }
+</section> -->

@@ -1,0 +1,154 @@
+<!-- src/app/quiz/quiz-taker.html v2.25-->
+
+
+<h2>{{ quiz()?.title }}</h2>
+<p>{{ quiz()?.description }}</p>
+<p>Duration: {{ quiz()?.duration }} minutes</p>
+
+<form (submit)="submit()" novalidate>
+  @for (let q of quiz()?.questions; track q._internalId; let i = $index) {
+    <fieldset>
+      <legend>Question {{ i + 1 }}</legend>
+      <p>{{ q.questionText }}</p>
+
+      @for (let opt of q.options; track $index; let j = $index) {
+        <label>
+          <input
+            type="radio"
+            name="question-{{ i }}"
+            [value]="j"
+            [checked]="answers()[i] === j"
+            (change)="updateAnswer(i, j)"
+          />
+          {{ opt }}
+        </label>
+      }
+    </fieldset>
+  }
+
+  <button type="submit">Submit Quiz</button>
+</form>
+
+
+
+
+<!-- <h2>{{ quiz().title }}</h2>
+
+<!-- Floating Status Widget -->
+<div
+  class="floating-status"
+  [class.is-dragging]="isDragging()"
+  [style.top.px]="position().y"
+  [style.left.px]="position().x"
+  (mousedown)="startDrag($event)"
+>
+  <p>Progress: {{ completedCount() }} / {{ quiz().questions.length }}</p>
+  <progress [value]="completedCount()" [max]="quiz().questions.length"></progress>
+
+  <p>⏱️ Time Remaining: {{ timer() }} seconds</p>
+
+  @if (expired()) {
+    <p class="warning">Time’s up! Your quiz was auto-submitted.</p>
+  }
+</div>
+
+@if (loading()) {
+  <p>Loading quiz…</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (quiz()) {
+  <form [formGroup]="form()" (submit)="submit(); $event.preventDefault()">
+    @for (q of quiz().questions; track q.id; let index = $index) {
+      <fieldset [class.answered]="isAnswered(index)">
+        <legend>Question {{ index + 1 }}: {{ q.questionText }}</legend>
+
+        @for (opt of q.options; track $optIndex; let optIndex = $index) {
+          <label for="opt-{{ index }}-{{ optIndex }}">
+            <input
+              id="opt-{{ index }}-{{ optIndex }}"
+              type="radio"
+              [formControl]="answers().controls[index]"
+              [value]="optIndex"
+            />
+            {{ opt }}
+          </label>
+        }
+      </fieldset>
+    }
+
+    <div class="actions">
+      <button type="submit" [disabled]="!isComplete()">✅ Submit Quiz</button>
+      <button type="button" (click)="cancel()">↩️ Cancel</button>
+    </div>
+  </form>
+
+  @if (submitted()) {
+    <div class="results">
+      <h3>🎉 Your Score: {{ score() }} / {{ quiz().questions.length }}</h3>
+      <p>Thanks for completing the quiz!</p>
+    </div>
+  }
+} -->
+
+
+<!--  -->
+<!-- <h2>{{ quiz()?.title }}</h2>
+
+<div
+  class="floating-status"
+  [style.top.px]="position().y"
+  [style.left.px]="position().x"
+  (mousedown)="startDrag($event)"
+>
+  <p>Progress: {{ completedCount() }} / {{ quiz()?.questions.length }}</p>
+  <progress [value]="completedCount()" [max]="quiz()?.questions.length"></progress>
+
+  <p>⏱️ Time Remaining: {{ timer() }} seconds</p>
+
+  @if (expired()) {
+    <p class="warning">Time’s up! Your quiz was auto-submitted.</p>
+  }
+</div>
+
+
+@if (expired()) {
+  <p class="warning">Time’s up! Your quiz was auto-submitted.</p>
+}
+
+@if (loading()) {
+  <p>Loading quiz…</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (quiz()) {
+  <form (submit)="submit(); $event.preventDefault()">
+    @for (q of quiz().questions; let i = index; track i) {
+      <fieldset [class.answered]="selectedAnswers()[i] !== -1">
+        <legend>Question {{ i + 1 }}: {{ q.questionText }}</legend>
+
+        @for (opt of q.options; let j = index; track j) {
+          <label>
+            <input
+              type="radio"
+              name="question-{{ i }}"
+              [checked]="selectedAnswers()[i] === j"
+              (change)="selectAnswer(i, j)"
+            />
+            {{ opt }}
+          </label>
+        }
+      </fieldset>
+    }
+
+    <div class="actions">
+      <button type="submit" [disabled]="!isComplete()">✅ Submit Quiz</button>
+      <button type="button" (click)="cancel()">↩️ Cancel</button>
+    </div>
+  </form>
+
+  @if (submitted()) {
+    <div class="results">
+      <h3>🎉 Your Score: {{ score() }} / {{ quiz().questions.length }}</h3>
+      <p>Thanks for completing the quiz!</p>
+    </div>
+  }
+} -->

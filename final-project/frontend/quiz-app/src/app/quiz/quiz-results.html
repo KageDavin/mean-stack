@@ -1,0 +1,32 @@
+<!-- File: src/app/quiz/quiz-results.html -->
+<!-- File: src/app/quiz/quiz-results.html v2.25 -->
+
+<h2>Quiz Results</h2>
+
+<p>You scored {{ state.score }} out of {{ state.total }}.</p>
+<p>Percentage: {{ percentage }}%</p>
+
+<h3>Review</h3>
+@for (let q of quiz?.questions; track q._internalId; let i = $index) {
+  <fieldset>
+    <legend>Question {{ i + 1 }}: {{ q.questionText }}</legend>
+
+    @for (let opt of q.options; track $index; let j = $index) {
+      <p
+        [class.correct]="j === q.correctOption"
+        [class.selected]="j === state.answers[i]"
+      >
+        {{ opt }}
+        @if (j === q.correctOption) {
+          ✅ Correct
+        }
+        @if (j === state.answers[i] && j !== q.correctOption) {
+          ❌ Your Answer
+        }
+      </p>
+    }
+  </fieldset>
+}
+
+<button (click)="retry()">Retry Quiz</button>
+<button (click)="goHome()">Back to Dashboard</button>

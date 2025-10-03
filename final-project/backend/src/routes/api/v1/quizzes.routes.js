@@ -12,11 +12,19 @@ import { requireRole } from '../../../middleware/role.js';
 
 const router = express.Router();
 
-router.get('/', authMiddleware, listQuizzes); // requires auth; could be public if you want
-router.get('/:id', authMiddleware, getQuiz);
-router.post('/', authMiddleware, requireRole('admin'), createQuiz);
-router.put('/:id', authMiddleware, requireRole('admin'), updateQuiz);
-router.delete('/:id', authMiddleware, requireRole('admin'), deleteQuiz);
-router.get('/:id/results', authMiddleware, requireRole('admin'), getQuizResults);
+
+router.get('/', listQuizzes); // requires auth; could be public if you want
+router.get('/:id', getQuiz);
+router.post('/', createQuiz);
+router.put('/:id',  updateQuiz);
+router.delete('/:id',  deleteQuiz);
+router.get('/:id/results', getQuizResults);
+
+// router.get('/', authMiddleware, listQuizzes); // requires auth; could be public if you want
+// router.get('/:id', authMiddleware, getQuiz);
+// router.post('/', authMiddleware, requireRole('admin'), createQuiz);
+// router.put('/:id', authMiddleware, requireRole('admin'), updateQuiz);
+// router.delete('/:id', authMiddleware, requireRole('admin'), deleteQuiz);
+// router.get('/:id/results', authMiddleware, requireRole('admin'), getQuizResults);
 
 export default router;

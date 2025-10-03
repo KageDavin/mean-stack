@@ -1,0 +1,28 @@
+<!-- src/app/dashboard/quiz-bucket.html -->
+<section class="bucket">
+  <h3>{{ title }}</h3>
+
+  @if (quizzes.length === 0) {
+    <p>No quizzes in this bucket.</p>
+  } @else {
+    <ul class="quiz-list">
+      @for (q of quizzes; track q.id) {
+        <li>
+          <strong>{{ q.title ?? 'Untitled' }}</strong>
+          <span>{{ q.duration ?? 0 }} min</span>
+
+          @if (type === 'draft') {
+            <button (click)="edit(q.id)">Edit</button>
+            <button (click)="delete(q.id)">Delete</button>
+            <button (click)="publish(q.id)">Publish</button>
+          } @else {
+            <button (click)="edit(q.id)">Edit</button>
+            <button (click)="delete(q.id)">Delete</button>
+            <button (click)="unpublish(q.id)">Unpublish</button>
+            <button (click)="preview(q.id)">Preview</button>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>

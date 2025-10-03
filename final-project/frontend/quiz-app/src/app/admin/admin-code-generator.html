@@ -1,0 +1,18 @@
+<!-- src/app/admin/admin-code-generator  -->
+<h2>🔐 Generate Admin Registration Code</h2>
+
+<button (click)="generate()">Generate Code</button>
+
+@if (code()) {
+  <div class="code-box">
+    <p><strong>Code:</strong> {{ code() }}</p>
+    <button (click)="copyToClipboard()">📋 Copy</button>
+    @if (copied()) {
+      <span class="success">Copied!</span>
+    }
+  </div>
+}
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}

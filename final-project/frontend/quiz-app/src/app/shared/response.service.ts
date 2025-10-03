@@ -2,7 +2,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import type { AttemptPayload, AttemptResult } from '../models/response';
+import type { AttemptPayload, AttemptResult } from '../models/response.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResponseService {

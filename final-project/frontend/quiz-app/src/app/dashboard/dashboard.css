@@ -1,0 +1,29 @@
+/* small admin dashboard styles — you can add to global styles.css instead */
+.admin-nav {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+}
+.quick-actions {
+  margin-top: 1rem;
+}
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.stat-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+}
+.stat-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.stat-card p {
+  margin: 0.5rem 0 0;
+  color: #666;
+}

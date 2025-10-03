@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "debugging/create-quiz-debug.ts", "debugging/quiz.service-debugging.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

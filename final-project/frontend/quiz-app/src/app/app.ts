@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,6 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class App {
   protected readonly title = signal('quiz-app');
+
+
 }

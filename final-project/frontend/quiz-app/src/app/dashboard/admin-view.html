@@ -1,0 +1,50 @@
+<!-- ─────────────────────────────────────────────
+     File: src/app/admin/admin-view.html
+     Purpose: Admin dashboard with filtering, pagination, and floating action
+     ───────────────────────────────────────────── -->
+
+<h2>🛠️ Quiz Management</h2>
+
+<div class="filters">
+  <button (click)="setFilter('all')" [class.active]="filter() === 'all'">All</button>
+  <button (click)="setFilter('published')" [class.active]="filter() === 'published'">Published</button>
+  <button (click)="setFilter('draft')" [class.active]="filter() === 'draft'">Drafts</button>
+</div>
+
+@if (loading()) {
+  <p>Loading quizzes…</p>
+} @else {
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else {
+    @if (paginated().length > 0) {
+      <ul class="quiz-list">
+        @for (quiz of paginated(); track quiz.id) {
+          <li>
+            <div class="quiz-card">
+              <h3>{{ quiz.title }}</h3>
+              <p>Status: <strong>{{ quiz.published ? 'Published' : 'Draft' }}</strong></p>
+              <div class="actions">
+                <button (click)="edit(quiz.id)">✏️ Edit</button>
+                <button (click)="delete(quiz.id)">🗑️ Delete</button>
+                <button (click)="togglePublish(quiz.id, !quiz.published)">
+                  {{ quiz.published ? 'Unpublish' : 'Publish' }}
+                </button>
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="page() === 0">← Prev</button>
+        <span>Page {{ page() + 1 }}</span>
+        <button (click)="nextPage()" [disabled]="(page() + 1) * pageSize >= filtered().length">Next →</button>
+      </div>
+    } @else {
+      <p>No quizzes found for this filter.</p>
+    }
+  }
+}
+
+<button class="floating-create" (click)="createNew()">＋ Create New Quiz</button>

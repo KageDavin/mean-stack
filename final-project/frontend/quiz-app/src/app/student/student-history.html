@@ -1,0 +1,17 @@
+<!-- src/app/studemt/student-history.html -->
+<h2>Your Past Quiz Attempts</h2>
+
+@if (loading()) {
+  <p>Loading history…</p>
+} @else if (attempts().length > 0) {
+  <ul>
+    @for (a of attempts(); track a.id) {
+      <li>
+        <strong>{{ a.quizTitle }}</strong> — Score: {{ a.score }} / {{ a.total }}
+        <button (click)="store.viewAttempt(a.id)">View</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No attempts found.</p>
+}

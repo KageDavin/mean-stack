@@ -1,0 +1,61 @@
+<!-- src/app/auth/register.html -->
+<h2>Register</h2>
+
+<form (submit)="register(); $event.preventDefault()">
+  <label>Name: <input type="text" [value]="name()"
+      (input)="name.set(($event.target as HTMLInputElement).value)" /></label>
+  <label>Email: <input type="email" [value]="email()"
+      (input)="email.set(($event.target as HTMLInputElement).value)" /></label>
+  <label>Password: <input type="password" [value]="password()"
+      (input)="password.set(($event.target as HTMLInputElement).value)" /></label>
+
+  <label>
+    Role:
+    <select [value]="role()" (change)="role.set(($event.target as HTMLSelectElement).value)">
+      <option value="student">Student</option>
+      <option value="admin">Admin</option>
+    </select>
+  </label>
+
+  @if (role() === 'admin') {
+  <label>Admin Code: <input type="text" [value]="adminCode()"
+      (input)="adminCode.set(($event.target as HTMLInputElement).value)" /></label>
+  }
+
+  <button type="submit">Register</button>
+</form>
+
+@if (error()) {
+<p class="error">{{ error() }}</p>
+}
+
+
+
+
+
+<!-- src/app/auth/register.html -->
+ <!-- <h2>Register</h2>
+
+<form (submit)="register(); $event.preventDefault()">
+  <label>Name: <input type="text" [value]="name()" (input)="name.set($event.target.value)" /></label>
+  <label>Email: <input type="email" [value]="email()" (input)="email.set($event.target.value)" /></label>
+  <label>Password: <input type="password" [value]="password()" (input)="password.set($event.target.value)" /></label>
+
+  <label>
+    Role:
+    <select [value]="role()" (change)="role.set($event.target.value)">
+      <option value="student">Student</option>
+      <option value="admin">Admin</option>
+    </select>
+  </label>
+
+  @if (role() === 'admin') {
+    <label>Admin Code: <input type="text" [value]="adminCode()" (input)="adminCode.set($event.target.value)" /></label>
+  }
+
+  <button type="submit">Register</button>
+</form>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+} -->

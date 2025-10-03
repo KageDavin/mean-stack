@@ -1,7 +1,8 @@
+// src/app/auth/role.guard.ts
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import type { Role } from '../models/auth';
+import type { Role } from '../models/auth.model';
 
 export const roleGuard = (required: Role): CanMatchFn => {
   return () => {
